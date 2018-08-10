@@ -27,7 +27,11 @@ namespace HttpClientPostTest
 
             contentList = MakeStringList();
             CancellationToken ct = new CancellationToken();
-            await PostBasicAsync(contentList, ct);
+            for (int j = 0;j< 10;j++)
+            {
+                PostBasicAsync(contentList, ct);
+            }
+            
 
 
         }
