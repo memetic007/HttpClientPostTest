@@ -29,7 +29,7 @@ namespace HttpClientPostTest
             CancellationToken ct = new CancellationToken();
             for (int j = 0;j< 10;j++)
             {
-                PostBasicAsync(contentList, ct);
+                PostAsync(contentList, ct);
             }
             
 
@@ -48,7 +48,7 @@ namespace HttpClientPostTest
             return returnList;
         }
        
-        private async Task PostBasicAsync(object content, CancellationToken cancellationToken)
+        private async Task PostAsync(object content, CancellationToken cancellationToken)
         {
             using (var client = new HttpClient())
             using (var request = new HttpRequestMessage(HttpMethod.Post, "https://yikesyikesyikes.azurewebsites.net/api/DirtyRCV"))
@@ -76,25 +76,7 @@ namespace HttpClientPostTest
           
         }
 
-        private static async Task PostBasicAsync2(object content, CancellationToken cancellationToken)
-        {
-            using (var client = new HttpClient())
-            using (var request = new HttpRequestMessage(HttpMethod.Post, "https://yikesyikesyikes.azurewebsites.net/api/DirtyRCV"))
-            {
-                var json = JsonConvert.SerializeObject(content);
-                using (var stringContent = new StringContent(json, Encoding.UTF8, "application/json"))
-                {
-                    request.Content = stringContent;
-
-                    using (var response = await client
-                        .SendAsync(request, HttpCompletionOption.ResponseHeadersRead, cancellationToken)
-                        .ConfigureAwait(false))
-                    {
-                        response.EnsureSuccessStatusCode();
-                    }
-                }
-            }
-        }
+        
         public void nop()
         {
 
