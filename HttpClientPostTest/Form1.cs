@@ -29,7 +29,7 @@ namespace HttpClientPostTest
             CancellationToken ct = new CancellationToken();
             for (int j = 0;j< 10;j++)
             {
-                PostBasicAsync2(contentList, ct);
+                PostBasicAsync(contentList, ct);
             }
             
 
@@ -65,7 +65,7 @@ namespace HttpClientPostTest
                         string ostring = await response.Content.ReadAsStringAsync();
 
                         
-                        Console.WriteLine(ostring);
+                        Console.WriteLine(ostring + " at: " + DateTime.Now.Millisecond.ToString());
                         var statusCode = response.StatusCode;
 
                     }
